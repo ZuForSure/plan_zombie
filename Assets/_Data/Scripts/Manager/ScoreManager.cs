@@ -15,4 +15,23 @@ public class ScoreManager : ZuMonoBehaviour
         if (instance != null) Debug.LogWarning("Only 1 bullet ScoreManager allowed");
         ScoreManager.instance = this;
     }
+
+    public virtual void AddCoin(int mount)
+    {
+        this.coin += mount;
+    }
+
+    public virtual bool DeductCoin(int mount) 
+    {
+        if (!CanDeduct(this.coin, mount)) return false;
+        this.coin -= mount;
+        return true;
+    }
+
+    protected virtual bool CanDeduct(int scoreType, int amout)
+    {
+        if (amout > scoreType) return false;
+        if (scoreType <= 0) return false;
+        return true;
+    }
 }

@@ -25,6 +25,6 @@ public class PlaintMakeCoin : PlantAbstract
 
     protected virtual void AddCoinToShop()
     {
-        ScoreManager.Instance.coin += this.coinPerTime;
+        ScoreManager.Instance.AddCoin(this.coinPerTime);
     }
 }

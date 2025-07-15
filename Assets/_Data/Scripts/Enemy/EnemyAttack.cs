@@ -9,6 +9,7 @@ public class EnemyAttack : ZuMonoBehaviour
     [SerializeField] protected float timer = 0f;
     [SerializeField] protected float attackRange = 0.5f;
     [SerializeField] protected int enemyLayer = 6;
+    [SerializeField] protected int gameLayer = 8;
     [SerializeField] protected Vector2 direc = Vector2.left;
 
     protected override void LoadComponent()
@@ -34,7 +35,7 @@ public class EnemyAttack : ZuMonoBehaviour
     protected virtual void FindPlant()
     {
         Vector3 pos = transform.position;
-        RaycastHit2D hitPlant = Physics2D.Raycast(pos, this.direc, this.attackRange, ~(1 << this.enemyLayer));
+        RaycastHit2D hitPlant = Physics2D.Raycast(pos, this.direc, this.attackRange, ~((1 << this.enemyLayer) | (1<<this.gameLayer)));
         
         if (hitPlant.collider == null) return;
         this.Attack();

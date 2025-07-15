@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class EnemyDamReceiver : DamageReceiver
 {
+    private void OnEnable()
+    {
+        this.ReBorn();
+    }
+
     protected override void OnDead()
     {
         this.DespawnEnemy();
@@ -11,6 +16,7 @@ public class EnemyDamReceiver : DamageReceiver
 
     protected virtual void DespawnEnemy()
     {
+        WaveManager.Instance.enemyCount--;
         EnemySpawner.Instance.DespawnToPool(transform.parent);
     }
 }

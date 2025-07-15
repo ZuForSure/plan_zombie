@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlantDamReceiver : DamageReceiver
 {
+    private void OnEnable()
+    {
+        this.ReBorn();
+    }
+
     protected override void OnDead()
     {
         this.DespawnPlant();

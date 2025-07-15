@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlantCtrl : ZuMonoBehaviour
 {
+    public int plantCost;
     [SerializeField] protected PlantFindEnemy plantFindEnemy;
     public PlantFindEnemy PlantFindEnemy => plantFindEnemy;
 

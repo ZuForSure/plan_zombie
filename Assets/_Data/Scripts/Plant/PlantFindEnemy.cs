@@ -6,6 +6,7 @@ public class PlantFindEnemy : ZuMonoBehaviour
 {
     [SerializeField] protected float shootingRange = 20f;
     [SerializeField] protected int plantLayer = 3;
+    [SerializeField] protected int areaLayer = 7;
     [SerializeField] protected int bitMaskNotHitted;
     [SerializeField] protected Vector3 raycastDirection = Vector3.right;
     [SerializeField] protected bool isFindEnemy = false;
@@ -29,6 +30,8 @@ public class PlantFindEnemy : ZuMonoBehaviour
             this.isFindEnemy = false;
             return;
         }
+
+        Debug.Log(hitEnemy.transform.name);
         this.isFindEnemy = true;
 
         if (!this.isDrawRaycast) return;
@@ -37,6 +40,6 @@ public class PlantFindEnemy : ZuMonoBehaviour
 
     protected virtual void IgnoreLayer()
     {
-        this.bitMaskNotHitted = ~(1 << this.plantLayer) ;
+        this.bitMaskNotHitted = ~((1 << this.plantLayer) | (1 << this.areaLayer));
     }
 }
