@@ -7,6 +7,8 @@ public class BulletSpanwer : Spawner
     protected static BulletSpanwer instance;
     public static BulletSpanwer Instance => instance;
 
+    public static string Bullet = "Bullet";
+
     protected override void Awake()
     {
         base.Awake();

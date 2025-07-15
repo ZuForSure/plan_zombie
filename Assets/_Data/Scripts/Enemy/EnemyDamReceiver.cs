@@ -6,6 +6,11 @@ public class EnemyDamReceiver : DamageReceiver
 {
     protected override void OnDead()
     {
-        Debug.Log("Enemy DEAD");
+        this.DespawnEnemy();
+    }
+
+    protected virtual void DespawnEnemy()
+    {
+        EnemySpawner.Instance.DespawnToPool(transform.parent);
     }
 }

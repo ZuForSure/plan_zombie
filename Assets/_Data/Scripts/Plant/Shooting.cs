@@ -2,17 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooting : MonoBehaviour
+public class Shooting : PlantAbstract
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Shooting")]
+    [SerializeField] protected float timer = 0;
+    [SerializeField] protected float delay = 1f;
+
+    private void FixedUpdate()
     {
-        
+        this.Shoot();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void Shoot()
     {
-        
+        if (!this.plantCtrl.PlantFindEnemy.IsFindEnemy) return;
+
+        this.timer += Time.fixedDeltaTime;
+        if (this.timer < this.delay) return;
+        this.timer = 0f;
+
+        Vector3 spawnPos = transform.position;
+        Transform newBullet = BulletSpanwer.Instance.SpawnPrefab(this.GetBulletName(), spawnPos, Quaternion.identity);
+        if (newBullet == null) return;
+        newBullet.gameObject.SetActive(true);
+    }
+
+    protected virtual string GetBulletName()
+    {
+        return BulletSpanwer.Bullet;
     }
 }
