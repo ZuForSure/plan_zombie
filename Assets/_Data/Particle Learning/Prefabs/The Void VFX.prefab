@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6852496769829974865}
   - component: {fileID: 2871788288576213594}
   m_Layer: 0
-  m_Name: Test The Void VFX
+  m_Name: The Void VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
