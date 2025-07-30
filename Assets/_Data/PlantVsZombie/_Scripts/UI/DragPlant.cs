@@ -1,10 +1,7 @@
 using Lean.Pool;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 public class DragPlant : ZuMonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -22,7 +19,7 @@ public class DragPlant : ZuMonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        GameObject newPlant = ObjSpawner.SpawnByPrefab(this.plantPrefab, transform.position, transform.rotation);
+        GameObject newPlant = SpawnManager.Instance.SpawnPrefabByName(transform.name, transform.position, transform.rotation);
         draggingIcon = newPlant;
         draggingIcon.transform.SetAsLastSibling();
     }
@@ -41,10 +38,8 @@ public class DragPlant : ZuMonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         if (draggingIcon != null)
         {
-
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             worldPos.z = 100;
-
             Vector3Int cellPos = targetTilemap.WorldToCell(worldPos);
             Vector3 snappedWorldPos = targetTilemap.GetCellCenterWorld(cellPos);
 
@@ -52,7 +47,7 @@ public class DragPlant : ZuMonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
             if (hit != null && hit.CompareTag("DropArea"))
             {
-                LeanPool.Spawn(this.plantPrefab, snappedWorldPos, Quaternion.identity);
+                SpawnManager.Instance.SpawnPrefabByName(transform.name, snappedWorldPos, Quaternion.identity);
             }
 
             LeanPool.Despawn(this.draggingIcon);

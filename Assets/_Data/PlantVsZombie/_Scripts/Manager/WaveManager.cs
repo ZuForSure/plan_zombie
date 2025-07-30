@@ -1,12 +1,10 @@
-using Lean.Pool;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveManager : ZuSingleton<WaveManager>
 {
     [Header("Wave Manager")]
-
+    public GameObject enemy;
     public bool isStartWave = false;
     public int enemyCount = 0;
     [SerializeField] protected bool isWaveDone = true;
@@ -44,6 +42,7 @@ public class WaveManager : ZuSingleton<WaveManager>
     {
         if (!this.isWaveDone) return;
 
+        this.isWaveDone = false;
         StartCoroutine(this.WaveSpawner());
     }
 
@@ -78,6 +77,6 @@ public class WaveManager : ZuSingleton<WaveManager>
         Transform spawnPos = PointManager.Instance.GetRandomPoint();
         Quaternion spawnRot = Quaternion.identity;
 
-        LeanPool.Spawn(SpawnAbleObj.Instance.GetPrefabByName("Enemy"), spawnPos.position, spawnRot);
+        SpawnManager.Instance.SpawnPrefabByName("Enemy", spawnPos.position, spawnRot);
     }
 }

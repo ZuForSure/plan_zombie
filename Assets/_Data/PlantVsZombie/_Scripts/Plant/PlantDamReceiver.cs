@@ -17,7 +17,6 @@ public class PlantDamReceiver : DamageReceiver
 
     protected virtual void DespawnPlant()
     {
-        //PlantSpawner.Instance.DespawnToPool(transform.parent);
         LeanPool.Despawn(transform.parent);
     }
 }

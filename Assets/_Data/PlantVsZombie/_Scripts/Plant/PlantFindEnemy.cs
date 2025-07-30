@@ -31,7 +31,6 @@ public class PlantFindEnemy : ZuMonoBehaviour
             return;
         }
 
-        Debug.Log(hitEnemy.transform.name);
         this.isFindEnemy = true;
 
         if (!this.isDrawRaycast) return;

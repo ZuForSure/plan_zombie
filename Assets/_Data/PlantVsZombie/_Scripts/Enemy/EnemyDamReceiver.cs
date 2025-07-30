@@ -18,8 +18,6 @@ public class EnemyDamReceiver : DamageReceiver
     protected virtual void DespawnEnemy()
     {
         WaveManager.Instance.enemyCount--;
-        //EnemySpawner.Instance.DespawnToPool(transform.parent);
-
         LeanPool.Despawn(transform.parent);
     }
 }

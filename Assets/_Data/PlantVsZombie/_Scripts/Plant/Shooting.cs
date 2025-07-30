@@ -22,12 +22,9 @@ public class Shooting : PlantAbstract
         if (this.timer < this.delay) return;
         this.timer = 0f;
 
-        //Transform newBullet = BulletManager.Instance.SpawnPrefab(this.GetBulletName(), spawnPos, Quaternion.identity);
-        //if (newBullet == null) return;
-        //newBullet.gameObject.SetActive(true);
+        //LeanPool.Spawn(this.bullet, spawnPos, Quaternion.identity);
 
         Vector3 spawnPos = transform.position;
-        GameObject newBullet = SpawnAbleObj.Instance.GetPrefabByName("Bullet");
-        LeanPool.Spawn(newBullet, spawnPos, Quaternion.identity);
+        SpawnManager.Instance.SpawnPrefabByName("Bullet", spawnPos, Quaternion.identity);
     }
 }

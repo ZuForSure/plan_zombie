@@ -17,7 +17,7 @@ public class ZuSingleton<T> : ZuMonoBehaviour where T : ZuMonoBehaviour
         if (instance == null)
         {
             instance = this as T;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             return;
         }
 

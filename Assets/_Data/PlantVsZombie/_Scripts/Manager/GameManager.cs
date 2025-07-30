@@ -58,7 +58,7 @@ public class GameManager : ZuSingleton<GameManager>
 
     protected virtual void CheckIsVictory()
     {
-        if (WaveManager.Instance.WaveCount > WaveManager.Instance.FinalWave)
+        if (WaveManager.Instance.WaveCount >= WaveManager.Instance.FinalWave)
         {
             if (WaveManager.Instance.enemyCount > 0) return;
             if (this.gameHP <= 0) return;
