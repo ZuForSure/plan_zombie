@@ -60,8 +60,6 @@ public class WaveManager : ZuSingleton<WaveManager>
 
         for (int i = 0; i < maxEnemies; i++)
         {
-            //EnemySpawner.Instance.SpawnEnemyAtRandomPoint();
-
             this.SpawnEnemyAtRandomPoint();
 
             this.enemyCount++;

@@ -22,10 +22,7 @@ public class DragPlant : ZuMonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //GameObject newPlant = PlantSpawner.Instance.SpawnPrefab(this.plantPrefab.transform, transform.position, transform.rotation).gameObject;
-        //newPlant.SetActive(true);
-
-        GameObject newPlant = LeanPool.Spawn(this.plantPrefab, transform.position, transform.rotation);
+        GameObject newPlant = ObjSpawner.SpawnByPrefab(this.plantPrefab, transform.position, transform.rotation);
         draggingIcon = newPlant;
         draggingIcon.transform.SetAsLastSibling();
     }
@@ -48,8 +45,6 @@ public class DragPlant : ZuMonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             worldPos.z = 100;
 
-            //Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
-
             Vector3Int cellPos = targetTilemap.WorldToCell(worldPos);
             Vector3 snappedWorldPos = targetTilemap.GetCellCenterWorld(cellPos);
 
@@ -57,13 +52,9 @@ public class DragPlant : ZuMonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
             if (hit != null && hit.CompareTag("DropArea"))
             {
-                //GameObject newPlant = PlantSpawner.Instance.SpawnPrefab(this.plantPrefab.transform, snappedWorldPos, Quaternion.identity).gameObject;
-                
                 LeanPool.Spawn(this.plantPrefab, snappedWorldPos, Quaternion.identity);
             }
 
-            //PlantSpawner.Instance.DespawnToPool(draggingIcon.transform);
-            //draggingIcon = null;
             LeanPool.Despawn(this.draggingIcon);
         }
     }
