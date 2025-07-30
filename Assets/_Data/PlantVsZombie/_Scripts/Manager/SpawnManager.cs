@@ -17,4 +17,15 @@ public class SpawnManager : ZuSingleton<SpawnManager>
 
         return null;
     }
+
+    //public virtual GameObject SpawnPrefab(string name, Vector3 pos, Quaternion rot)
+    //{
+    //    foreach (var prefab in prefabs)
+    //    {
+    //        if (prefab.name != name) continue;
+    //        return LeanPool.Spawn(prefab, pos, rot);
+    //    }
+
+    //    return null;
+    //}
 }

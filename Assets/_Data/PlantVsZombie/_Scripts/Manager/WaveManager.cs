@@ -4,7 +4,6 @@ using UnityEngine;
 public class WaveManager : ZuSingleton<WaveManager>
 {
     [Header("Wave Manager")]
-    public GameObject enemy;
     public bool isStartWave = false;
     public int enemyCount = 0;
     [SerializeField] protected bool isWaveDone = true;
@@ -60,7 +59,6 @@ public class WaveManager : ZuSingleton<WaveManager>
         for (int i = 0; i < maxEnemies; i++)
         {
             this.SpawnEnemyAtRandomPoint();
-
             this.enemyCount++;
             yield return new WaitForSeconds(this.timeBetweenEnemies);
         }
